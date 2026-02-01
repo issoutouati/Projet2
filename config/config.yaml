@@ -1,0 +1,377 @@
+# System settings
+system:
+  name: ACARS
+  version: 1.0.0
+  log_level: INFO
+  max_workers: 10
+  backup_retention_days: 30
+
+# Monitoring configuration
+monitoring:
+  enabled_protocols: ['http', 'https', 'ssh', 'ftp', 'smtp', 'tcp']
+  check_interval: 10  # seconds
+  retention_period: 86400  # 24 hours in seconds
+  metrics_collection: true
+  
+  # Network monitoring
+  connection_threshold: 1000
+  port_scan_threshold: 50
+  
+  # Web server monitoring
+  log_files:
+    - /var/log/nginx/access.log
+    - /var/log/apache2/access.log
+  request_threshold: 1000
+  error_threshold: 100
+  
+  # Database monitoring
+  connection_threshold: 100
+  query_threshold: 1000
+  
+  # System monitoring
+  cpu_threshold: 90
+  memory_threshold: 90
+  disk_threshold: 95
+  
+  # Web servers to monitor
+  servers:
+    - url: http://localhost:80
+      name: local_web_server
+    - url: https://localhost:443
+      name: secure_web_server
+
+# Threat detection configuration
+detection:
+  threat_levels:
+    low:
+      threshold: 1
+      response: log
+    medium:
+      threshold: 5
+      response: alert
+    high:
+      threshold: 10
+      response: block
+    critical:
+      threshold: 20
+      response: emergency
+  
+  # Attack pattern definitions
+  attack_patterns:
+    sql_injection:
+      patterns:
+        - "union select"
+        - "drop table"
+        - "insert into"
+        - "delete from"
+        - "update set"
+        - "exec "
+        - "execute "
+        - "information_schema"
+      severity: high
+    
+    xss:
+      patterns:
+        - "<script"
+        - "javascript:"
+        - "onload="
+        - "onerror="
+        - "<iframe"
+        - "<object"
+        - "<embed"
+      severity: medium
+    
+    ddos:
+      threshold: 100  # requests per minute
+      severity: critical
+    
+    brute_force:
+      threshold: 10  # failed attempts per minute
+      severity: high
+    
+    path_traversal:
+      patterns:
+        - "../"
+        - "..\\"
+        - "%2e%2e%2f"
+      severity: high
+    
+    command_injection:
+      patterns:
+        - "[;&|`$(){}[\]]"
+        - "curl "
+        - "wget "
+        - "nc "
+        - "bash "
+        - "sh "
+      severity: critical
+
+# Response actions configuration
+response:
+  actions:
+    # Log handler (always enabled)
+    log_handler:
+      enabled: true
+      format: json
+      file: /var/log/acars/threats.log
+      syslog_enabled: false
+    
+    # Alert handler
+    alert_handler:
+      enabled: true
+      channels: ['console']  # Options: console, email, slack, webhook
+      escalation_delay: 300  # 5 minutes
+      
+      # Email configuration
+      email:
+        enabled: false
+        smtp_server: smtp.gmail.com
+        smtp_port: 587
+        username: your_email@gmail.com
+        password: your_app_password
+        recipients:
+          - admin@yourcompany.com
+          - security@yourcompany.com
+      
+      # Slack configuration
+      slack:
+        enabled: false
+        webhook_url: https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
+        channel: "#security"
+      
+      # Webhook configuration
+      webhook:
+        enabled: false
+        urls:
+          - https://your-siem.com/api/threats
+          - https://your-monitoring.com/webhooks/acars
+        timeout: 30
+    
+    # IP blocking handler
+    block_ip:
+      enabled: false  # Requires root privileges
+      duration: 3600  # 1 hour
+      firewall_types: ['iptables']  # Options: iptables, ufw, pf
+      
+    # System quarantine handler
+    quarantine_system:
+      enabled: false  # Requires root privileges
+      network_isolation: true
+      service_isolation: true
+      file_system_scan: true
+      isolation_timeout: 1800  # 30 minutes
+    
+    # Account disable handler
+    disable_account:
+      enabled: false
+      admin_notification: true
+      session_termination: true
+    
+    # Service restart handler
+    restart_service:
+      enabled: false  # Requires root privileges
+      backup_state: true
+      rollback_time: 300  # 5 minutes
+    
+    # Emergency shutdown handler (HIGH RISK!)
+    emergency_handler:
+      enabled: false  # VERY HIGH RISK - DISABLED BY DEFAULT
+      shutdown_timeout: 60
+
+  # Escalation settings
+  escalation:
+    auto_escalate: true
+    escalation_timeout: 1800  # 30 minutes
+    escalation_contacts:
+      - security-team@yourcompany.com
+      - oncall@yourcompany.com
+
+# Integration configurations
+integrations:
+  # Firewall integrations
+  firewalls:
+    iptables:
+      enabled: false
+    ufw:
+      enabled: false
+    pf:
+      enabled: false
+  
+  # Cloud service integrations
+  cloud_services:
+    aws:
+      enabled: false
+      region: us-east-1
+      services:
+        - waf
+        - security_hub
+        - guardduty
+      credentials:
+        access_key_id: YOUR_AWS_ACCESS_KEY
+        secret_access_key: YOUR_AWS_SECRET_KEY
+    
+    azure:
+      enabled: false
+      services:
+        - sentinel
+        - defender
+        - firewall
+      credentials:
+        client_id: YOUR_AZURE_CLIENT_ID
+        client_secret: YOUR_AZURE_CLIENT_SECRET
+        tenant_id: YOUR_AZURE_TENANT_ID
+    
+    gcp:
+      enabled: false
+      services:
+        - security_command
+        - firewall
+        - ids
+      credentials:
+        project_id: YOUR_GCP_PROJECT_ID
+        service_account_key: /path/to/service_account.json
+  
+  # SIEM integrations
+  siem:
+    splunk:
+      enabled: false
+      url: https://your-splunk-instance:8088
+      token: YOUR_SPLUNK_HEC_TOKEN
+      index: security
+    
+    elk:
+      enabled: false
+      url: https://your-elasticsearch:9200
+      username: elastic
+      password: your_password
+      index: acars-threats
+    
+    arcsight:
+      enabled: false
+      url: https://your-arcsight:8443
+      username: admin
+      password: your_password
+
+# Machine Learning configuration
+ml:
+  enabled: true
+  model_retrain_interval: 86400  # 24 hours
+  
+  # Threat classification
+  threat_classification:
+    enabled: true
+    confidence_threshold: 0.7
+    model_dir: /home/engine/project/ml/models
+  
+  # Anomaly detection
+  anomaly_detection:
+    enabled: true
+    sensitivity: 0.8
+    min_samples: 100
+    contamination: 0.1
+    normal_threshold: -0.5
+    model_dir: /home/engine/project/ml/models
+  
+  # Threat prediction
+  threat_prediction:
+    enabled: true
+    sequence_length: 50
+    feature_dim: 10
+    model_dir: /home/engine/project/ml/models
+
+# Notification settings
+notifications:
+  # Email settings
+  email:
+    enabled: false
+    smtp_server: smtp.gmail.com
+    smtp_port: 587
+    username: your_email@gmail.com
+    password: your_app_password
+    use_tls: true
+    recipients:
+      - admin@yourcompany.com
+      - security-team@yourcompany.com
+  
+  # Slack notifications
+  slack:
+    enabled: false
+    webhook_url: https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
+    channel: "#security-alerts"
+    username: ACARS Bot
+  
+  # SMS notifications (via service like Twilio)
+  sms:
+    enabled: false
+    provider: twilio
+    account_sid: YOUR_TWILIO_SID
+    auth_token: YOUR_TWILIO_TOKEN
+    from_number: +1234567890
+    to_numbers:
+      - +1234567891
+      - +1234567892
+
+# Database configuration
+database:
+  enabled: false
+  type: postgresql  # Options: postgresql, mysql, sqlite
+  host: localhost
+  port: 5432
+  database: acars
+  username: acars_user
+  password: secure_password
+  pool_size: 10
+  retention_days: 30
+
+# Performance tuning
+performance:
+  worker_threads: 4
+  max_queue_size: 10000
+  batch_size: 100
+  cache_size: 1000
+  timeout: 30
+
+# Security settings
+security:
+  encryption_key: your_encryption_key_here
+  jwt_secret: your_jwt_secret_here
+  api_rate_limit: 1000  # requests per hour
+  max_file_size: 10485760  # 10MB
+
+# Development and testing
+development:
+  debug: false
+  test_mode: false
+  mock_external_services: false
+  simulation_enabled: true
+  demo_data: true
+
+# Backup and recovery
+backup:
+  enabled: true
+  interval: 3600  # 1 hour
+  retention: 7  # days
+  location: /var/backups/acars
+  
+# Advanced features
+advanced:
+  # Threat intelligence feeds
+  threat_intelligence:
+    enabled: false
+    feeds:
+      - url: https://threat-feed.example.com/api/iocs
+        api_key: YOUR_FEED_API_KEY
+        update_interval: 3600  # 1 hour
+  
+  # Custom rules
+  custom_rules:
+    enabled: false
+    rules_file: /home/engine/project/config/custom_rules.yaml
+  
+  # API settings
+  api:
+    enabled: false
+    host: 0.0.0.0
+    port: 8080
+    cors_enabled: true
+    rate_limit: 100  # requests per minute

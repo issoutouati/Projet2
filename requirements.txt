@@ -1,0 +1,55 @@
+# Core dependencies
+psutil>=5.9.0
+requests>=2.28.0
+numpy>=1.21.0
+scikit-learn>=1.1.0
+scipy>=1.9.0
+pandas>=1.4.0
+pyyaml>=6.0
+jinja2>=3.1.0
+
+# Network monitoring and security
+scapy>=2.5.0
+pcapy-ng>=0.8.1
+python-nmap>=0.7.1
+pysnmp>=4.4.12
+
+# Database connectivity
+psycopg2-binary>=2.9.0
+pymongo>=4.1.0
+redis>=4.3.0
+sqlalchemy>=1.4.0
+
+# Web framework and monitoring
+flask>=2.2.0
+fastapi>=0.85.0
+uvicorn>=0.18.0
+aiohttp>=3.8.0
+
+# Logging and monitoring
+structlog>=22.1.0
+prometheus-client>=0.15.0
+
+# Machine learning
+tensorflow>=2.10.0
+torch>=1.12.0
+
+# Security and encryption
+cryptography>=37.0.0
+bcrypt>=4.0.0
+
+# Configuration and utilities
+python-dotenv>=0.19.0
+click>=8.1.0
+rich>=12.5.0
+typer>=0.6.0
+
+# Testing
+pytest>=7.1.0
+pytest-asyncio>=0.20.0
+pytest-cov>=3.0.0
+
+# Development
+black>=22.6.0
+flake8>=5.0.0
+mypy>=0.971
