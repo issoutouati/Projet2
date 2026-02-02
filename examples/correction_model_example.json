@@ -1,0 +1,82 @@
+{
+  "exam_title": "Mathematics Final Exam - Spring 2024",
+  "total_points": 100,
+  "matching_rules": {
+    "case_sensitive": true,
+    "ignore_whitespace": true,
+    "allow_synonyms": false
+  },
+  "questions": [
+    {
+      "question_id": 1,
+      "question_text": "What is 2+2?",
+      "correct_answer": "4",
+      "points": 10,
+      "matching_type": "exact"
+    },
+    {
+      "question_id": 2,
+      "question_text": "What is the capital of France?",
+      "correct_answer": "Paris",
+      "points": 10,
+      "matching_type": "exact"
+    },
+    {
+      "question_id": 3,
+      "question_text": "What is 10 * 5?",
+      "correct_answer": "50",
+      "points": 10,
+      "matching_type": "exact"
+    },
+    {
+      "question_id": 4,
+      "question_text": "What is the square root of 16?",
+      "correct_answer": "4",
+      "points": 10,
+      "matching_type": "exact"
+    },
+    {
+      "question_id": 5,
+      "question_text": "What is 100 / 4?",
+      "correct_answer": "25",
+      "points": 10,
+      "matching_type": "exact"
+    },
+    {
+      "question_id": 6,
+      "question_text": "What color is the sky on a clear day?",
+      "correct_answer": "blue",
+      "points": 10,
+      "matching_type": "exact",
+      "case_sensitive": false
+    },
+    {
+      "question_id": 7,
+      "question_text": "Write any number between 1 and 10",
+      "correct_answer": "\\d+",
+      "points": 10,
+      "matching_type": "regex"
+    },
+    {
+      "question_id": 8,
+      "question_text": "What is 7 + 8?",
+      "correct_answer": "15",
+      "points": 10,
+      "matching_type": "exact"
+    },
+    {
+      "question_id": 9,
+      "question_text": "What is 12 - 5?",
+      "correct_answer": "7",
+      "points": 10,
+      "matching_type": "exact"
+    },
+    {
+      "question_id": 10,
+      "question_text": "What is 3 * 3?",
+      "correct_answer": "9",
+      "points": 10,
+      "matching_type": "exact"
+    }
+  ]
+}

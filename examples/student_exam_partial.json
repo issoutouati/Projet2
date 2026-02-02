@@ -1,0 +1,46 @@
+{
+  "student_name": "Bob Smith",
+  "student_id": "STU2024002",
+  "answers": [
+    {
+      "question_id": 1,
+      "answer": "4"
+    },
+    {
+      "question_id": 2,
+      "answer": "London"
+    },
+    {
+      "question_id": 3,
+      "answer": "50"
+    },
+    {
+      "question_id": 4,
+      "answer": "four"
+    },
+    {
+      "question_id": 5,
+      "answer": "25"
+    },
+    {
+      "question_id": 6,
+      "answer": "Blue"
+    },
+    {
+      "question_id": 7,
+      "answer": "8"
+    },
+    {
+      "question_id": 8,
+      "answer": "14"
+    },
+    {
+      "question_id": 9,
+      "answer": "7"
+    },
+    {
+      "question_id": 10,
+      "answer": "9"
+    }
+  ]
+}
