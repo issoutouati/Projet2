@@ -19,100 +19,34 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # Virtual environments
-.env
-.venv
-env/
 venv/
 ENV/
-env.bak/
-venv.bak/
+env/
+.venv
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Output files
+*.pdf
+reports/
+output/
 
 # Logs
-logs/
 *.log
-/var/log/acars/
 
-# ML models
-ml/models/
-*.pkl
-*.h5
-*.joblib
-
-# Config
-config/local_config.yaml
-config/production.yaml
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Backup files
-*.bak
-*.backup
-/var/backups/acars/
-
-# Test files
-.coverage
-.pytest_cache/
-.tox/
-htmlcov/
-
-# Documentation
-docs/_build/
-
-# Temporary files
-tmp/
-temp/
+# OCR temporary files
 *.tmp
-
-# System files
-*.pid
-*.lock
-
-# Docker
-.dockerignore
-Dockerfile*
-docker-compose*.yml
-
-# Node.js (if any frontend components)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environment variables
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Security
-*.key
-*.pem
-*.crt
-secrets/
-credentials/
-config/secrets.yaml

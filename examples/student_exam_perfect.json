@@ -1,0 +1,46 @@
+{
+  "student_name": "Alice Johnson",
+  "student_id": "STU2024001",
+  "answers": [
+    {
+      "question_id": 1,
+      "answer": "4"
+    },
+    {
+      "question_id": 2,
+      "answer": "Paris"
+    },
+    {
+      "question_id": 3,
+      "answer": "50"
+    },
+    {
+      "question_id": 4,
+      "answer": "4"
+    },
+    {
+      "question_id": 5,
+      "answer": "25"
+    },
+    {
+      "question_id": 6,
+      "answer": "blue"
+    },
+    {
+      "question_id": 7,
+      "answer": "5"
+    },
+    {
+      "question_id": 8,
+      "answer": "15"
+    },
+    {
+      "question_id": 9,
+      "answer": "7"
+    },
+    {
+      "question_id": 10,
+      "answer": "9"
+    }
+  ]
+}
